@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-label="IR_Car 系统连接示意">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23a2b"/>
+    </marker>
+  </defs>
+  <style>
+    .box{fill:#fffdf8;stroke:#d8d0bf;stroke-width:1.2}
+    .t{font-family:Inter,"Microsoft YaHei",sans-serif;fill:#17140f;font-weight:650;font-size:24px}
+    .s{font-family:Inter,"Microsoft YaHei",sans-serif;fill:#70695c;font-size:16px}
+    .p{font-family:"Cascadia Mono",Consolas,monospace;fill:#4a443a;font-size:15px}
+    .m{font-family:"Cascadia Mono",Consolas,monospace;fill:#8a8172;font-size:14px;letter-spacing:.4px}
+    .ln{stroke:#b23a2b;stroke-width:1.4;fill:none;marker-end:url(#arrow)}
+  </style>
+
+  <text x="30" y="36" class="m">IR_CAR / SYSTEM MAP</text>
+  <text x="30" y="60" class="s">面包板搭建，无 PCB；以下为系统连接示意</text>
+
+  <rect class="box" x="30" y="100" width="150" height="80" rx="8"/>
+  <text class="t" x="105" y="138" text-anchor="middle">NEC 遥控器</text>
+  <text class="s" x="105" y="160" text-anchor="middle">38kHz 载波</text>
+
+  <rect class="box" x="230" y="100" width="170" height="80" rx="8"/>
+  <text class="t" x="315" y="138" text-anchor="middle">HX1838</text>
+  <text class="s" x="315" y="160" text-anchor="middle">红外接收头</text>
+
+  <rect class="box" x="450" y="80" width="290" height="230" rx="8"/>
+  <text class="t" x="595" y="118" text-anchor="middle">STM32F103C8T6</text>
+  <text class="p" x="470" y="154">PA6 · EXTI 双边沿</text>
+  <text class="p" x="470" y="184">TIM3 · 1µs 计时</text>
+  <text class="p" x="470" y="214">PA0/PA1 · TIM2 PWM</text>
+  <text class="p" x="470" y="244">PB8/PB9 · 软件 I2C</text>
+  <text class="p" x="470" y="274">PB10/11 · PB14/15 方向</text>
+
+  <rect class="box" x="790" y="100" width="170" height="80" rx="8"/>
+  <text class="t" x="875" y="138" text-anchor="middle">TB6612</text>
+  <text class="s" x="875" y="160" text-anchor="middle">双通道 H 桥</text>
+
+  <rect class="box" x="790" y="240" width="170" height="90" rx="8"/>
+  <text class="t" x="875" y="278" text-anchor="middle">4 × 直流电机</text>
+  <text class="s" x="875" y="300" text-anchor="middle">左两轮 / 右两轮</text>
+  <text class="m" x="875" y="320" text-anchor="middle">右轮 +100 PWM</text>
+
+  <rect class="box" x="450" y="360" width="290" height="70" rx="8"/>
+  <text class="t" x="595" y="394" text-anchor="middle">0.96″ OLED</text>
+  <text class="s" x="595" y="416" text-anchor="middle">SSD1306 · 软件 I2C</text>
+
+  <rect class="box" x="30" y="450" width="150" height="60" rx="8"/>
+  <text class="t" x="105" y="483" text-anchor="middle" style="font-size:20px">7V 18650</text>
+  <text class="s" x="105" y="503" text-anchor="middle" style="font-size:14px">电机 / 系统供电</text>
+
+  <rect class="box" x="230" y="450" width="170" height="60" rx="8"/>
+  <text class="t" x="315" y="483" text-anchor="middle" style="font-size:20px">5V 降压模块</text>
+  <text class="s" x="315" y="503" text-anchor="middle" style="font-size:14px">系统板 / 逻辑</text>
+
+  <rect class="box" x="450" y="450" width="290" height="60" rx="8"/>
+  <text class="t" x="595" y="483" text-anchor="middle" style="font-size:20px">逻辑供电</text>
+  <text class="s" x="595" y="503" text-anchor="middle" style="font-size:14px">5V · MCU 3.3V</text>
+
+  <path class="ln" d="M180 140 H226"/>
+  <path class="ln" d="M400 140 H446"/>
+  <path class="ln" d="M740 140 H786"/>
+  <path class="ln" d="M875 180 V236"/>
+  <path class="ln" d="M595 310 V356"/>
+  <path class="ln" d="M180 480 H226"/>
+  <path class="ln" d="M400 480 H446"/>
+
+  <text class="m" x="230" y="200">NEC 32 位 / 反码校验</text>
+  <text class="m" x="790" y="200">PWM 差速</text>
+  <text class="m" x="450" y="338">状态机解码 / 重复码保持</text>
+  <text class="m" x="30" y="540">TB6612 VM 直接由 7V 电池供电；5V 只给逻辑与编码器</text>
+</svg>

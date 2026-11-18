@@ -1,12 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yi-lne — 嵌入式项目作品集</title>
+  <meta name="description" content="Yi-lne 的嵌入式项目作品集：STM32 固件、红外遥控小车、MT3608 升压板、DCDC 升降压电源板与两轮自平衡小车。">
+  <meta name="theme-color" content="#eaf4ef">
+  <link rel="canonical" href="https://yi-lne.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yi-lne — 嵌入式项目作品集">
+  <meta property="og:description" content="STM32 固件、电源与 PCB：红外遥控小车、MT3608 升压板、DCDC 升降压电源板、两轮自平衡小车。">
+  <meta property="og:url" content="https://yi-lne.github.io/">
+  <meta property="og:image" content="https://yi-lne.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://yi-lne.github.io/assets/img/og.jpg">
 </head>
 <body>
-    <h1>hhh</h1>
+  <a class="skip-link" href="#work">跳到项目</a>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="logo" href="#top" aria-label="Yi-lne 首页">
+        <span class="logo-mark" aria-hidden="true">YL</span>
+        <span class="logo-text">Yi-lne</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#work">嵌入式项目</a>
+        <a href="#other">其他项目</a>
+        <a href="https://github.com/Yi-lne" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Portfolio / 2026</p>
+        <h1 id="hero-title">Yi-lne 的个人项目</h1>
+        <div class="chips" aria-label="技术栈">
+          <span class="chip">STM32F103</span>
+          <span class="chip">C / HAL</span>
+          <span class="chip">FreeRTOS</span>
+          <span class="chip">电源设计</span>
+          <span class="chip">PCB</span>
+          <span class="chip">嘉立创 EDA</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">查看项目 <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="https://github.com/Yi-lne" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="work" aria-labelledby="work-title">
+      <header class="section-head" data-reveal>
+        <div>
+          <p class="section-label">Selected work / 04</p>
+          <h2 class="section-title" id="work-title">嵌入式项目</h2>
+        </div>
+        <p class="section-note">从电路、PCB 到固件与调试。</p>
+      </header>
+
+      <div class="projects">
+        <article class="project" id="ir-car" data-reveal>
+          <header class="project-head">
+            <span class="project-index" aria-hidden="true">01</span>
+            <div class="project-head-text">
+              <p class="project-kicker">Infrared / Motion</p>
+              <h3>红外遥控小车 <span class="status"><i aria-hidden="true"></i>已完成</span></h3>
+              <p class="project-summary">STM32F103C8T6 四轮红外遥控小车。用 EXTI 双边沿中断、TIM3 1µs 计时与四状态机解码 NEC 协议，TB6612 双路 PWM 驱动，OLED 实时显示解码状态。</p>
+              <div class="tags" aria-label="技术标签">
+                <span>STM32F103</span><span>NEC</span><span>EXTI</span><span>TB6612</span><span>OLED</span>
+              </div>
+            </div>
+            <a class="repo-link" href="https://github.com/Yi-lne/Embedded-project--IR_Car" target="_blank" rel="noopener">仓库 <span aria-hidden="true">↗</span></a>
+          </header>
+
+          <div class="project-grid">
+            <div class="project-info">
+              <ul class="points">
+                <li>NEC 32 位解码：地址码 / 数据码反码校验，异常自动复位；重复码保持，300ms 超时自动停车。</li>
+                <li>三档速度与差速转向；前进时右轮 +100 PWM 补偿直行偏差。</li>
+                <li>OLED 显示数据码、方向、脉宽与保持标志，快速定位误码与重复码问题。</li>
+              </ul>
+              <div class="stats">
+                <div><b>32 位</b><span>NEC 数据</span></div>
+                <div><b>3 档</b><span>速度</span></div>
+                <div><b>300 ms</b><span>重复码超时</span></div>
+                <div><b>1 µs</b><span>计时分辨率</span></div>
+              </div>
+            </div>
+
+            <div class="project-viewer">
+              <div class="viewer" data-viewer>
+                <figure class="stage">
+                  <img class="stage-img" src="assets/img/ir-system.svg" alt="IR_Car 系统连接示意" loading="lazy">
+                  <figcaption>
+                    <span class="stage-label">系统连接</span>
+                    <span class="stage-caption">面包板搭建 · 无 PCB</span>
+                  </figcaption>
+                </figure>
+                <div class="thumbs" role="group" aria-label="IR_Car 图片">
+                  <button class="thumb is-active" type="button" aria-pressed="true"
+                    data-src="assets/img/ir-system.svg" data-label="系统连接" data-caption="面包板搭建 · 无 PCB" data-alt="IR_Car 系统连接示意">
+                    <img src="assets/img/ir-system.svg" alt="" loading="lazy">
+                    <span>系统连接</span>
+                  </button>
+                  <button class="thumb" type="button" aria-pressed="false"
+                    data-src="assets/img/ir-nec.svg" data-label="NEC 帧结构" data-caption="引导码 / 32 位数据 / 重复码" data-alt="NEC 帧结构示意">
+                    <img src="assets/img/ir-nec.svg" alt="" loading="lazy">
+                    <span>NEC 帧结构</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project--reverse" id="mt3608" data-reveal>
+          <header class="project-head">
+            <span class="project-index" aria-hidden="true">02</span>
+            <div class="project-head-text">
+              <p class="project-kicker">Power / Boost</p>
+              <h3>MT3608 可调升压板 <span class="status"><i aria-hidden="true"></i>已完成</span></h3>
+              <p class="project-summary">基于 MT3608 的可调升压电源板。输入 2–16V，输出 12.6–18V 可调，集成防反接与 TVS 保护；完成原理图、PCB、打样与实测。</p>
+              <div class="tags" aria-label="技术标签">
+                <span>MT3608</span><span>Boost</span><span>EDA</span><span>防反接</span>
+              </div>
+            </div>
+            <a class="repo-link" href="https://github.com/Yi-lne/Embedded-project--DCDC_BOOST_MT3608" target="_blank" rel="noopener">仓库 <span aria-hidden="true">↗</span></a>
+          </header>
+
+          <div class="project-grid">
+            <div class="project-info">
+              <ul class="points">
+                <li>10µH + SS54B + 22µF 升压主电路，200K / 100K 电位器 + 10K 反馈网络，实现 12.6–18V 可调。</li>
+                <li>P-MOS + 稳压管栅极钳位防反接，SMBJ16A TVS 抑制输入尖峰。</li>
+                <li>嘉立创 EDA 完成原理图 / PCB / Gerber；实测 12.64–17.94V，与理论值一致。</li>
+              </ul>
+              <div class="stats">
+                <div><b>2–16 V</b><span>输入</span></div>
+                <div><b>12.6–18 V</b><span>输出范围</span></div>
+                <div><b>17.94 V</b><span>实测上限</span></div>
+                <div><b>89.9 K</b><span>电位器实测</span></div>
+              </div>
+            </div>
+
+            <div class="project-viewer">
+              <div class="viewer" data-viewer>
+                <figure class="stage">
+                  <img class="stage-img" src="assets/img/mt3608-sch.webp" alt="MT3608 升压板原理图" loading="lazy">
+                  <figcaption>
+                    <span class="stage-label">原理图</span>
+                    <span class="stage-caption">MT3608 · V1.0</span>
+                  </figcaption>
+                </figure>
+                <div class="thumbs" role="group" aria-label="MT3608 图片">
+                  <button class="thumb is-active" type="button" aria-pressed="true"
+                    data-src="assets/img/mt3608-sch.webp" data-label="原理图" data-caption="MT3608 · V1.0" data-alt="MT3608 升压板原理图">
+                    <img src="assets/img/mt3608-sch-thumb.webp" alt="" loading="lazy">
+                    <span>原理图</span>
+                  </button>
+                  <button class="thumb" type="button" aria-pressed="false"
+                    data-src="assets/img/mt3608-pcb.webp" data-label="PCB" data-caption="V1.0 · 板卡渲染" data-alt="MT3608 升压板 PCB">
+                    <img src="assets/img/mt3608-pcb-thumb.webp" alt="" loading="lazy">
+                    <span>PCB</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" id="dcdc" data-reveal>
+          <header class="project-head">
+            <span class="project-index" aria-hidden="true">03</span>
+            <div class="project-head-text">
+              <p class="project-kicker">Power / Multi-rail</p>
+              <h3>DCDC 升降压电源板 <span class="status"><i aria-hidden="true"></i>已完成</span></h3>
+              <p class="project-summary">集成可调升压、可调降压、固定 5V/3.3V 与三路 ADC 监测的电源板。STM32 负责采样、OLED 显示与 BUCK/BOOST 开关控制。</p>
+              <div class="tags" aria-label="技术标签">
+                <span>LGS6302B5</span><span>LM2596</span><span>STM32</span><span>ADC</span><span>OLED</span>
+              </div>
+            </div>
+            <a class="repo-link" href="https://github.com/Yi-lne/Embedded-project--DCDC_BUCK_and_BOOST" target="_blank" rel="noopener">仓库 <span aria-hidden="true">↗</span></a>
+          </header>
+
+          <div class="project-grid">
+            <div class="project-info">
+              <ul class="points">
+                <li>13.2–25.2V 升压 / 1.23–7.38V 降压 / 5V / 3.3V 多路输出；9A 保险丝、13V 与 33V 过压保护。</li>
+                <li>ADC1 三通道扫描 + DMA 循环采样，分压换算、一阶滤波、0.01V 显示；100ms 刷新 OLED。</li>
+                <li>EXTI + 20ms 定时器消抖控制 BUCK/BOOST 启停，上电同步开关状态。</li>
+                <li>调试：定位稳压管漏电、R27 下拉导致 BUCK 失效；实测 OVP 动作点 14.02V。</li>
+              </ul>
+              <div class="stats">
+                <div><b>25.2 V</b><span>升压上限</span></div>
+                <div><b>7.38 V</b><span>降压上限</span></div>
+                <div><b>3 路</b><span>ADC 监测</span></div>
+                <div><b>14.02 V</b><span>OVP 动作点</span></div>
+              </div>
+            </div>
+
+            <div class="project-viewer">
+              <div class="viewer" data-viewer>
+                <figure class="stage">
+                  <img class="stage-img" src="assets/img/dcdc-pcb.webp" alt="DCDC 升降压电源板 PCB" loading="lazy">
+                  <figcaption>
+                    <span class="stage-label">PCB</span>
+                    <span class="stage-caption">四层板 · V1.0</span>
+                  </figcaption>
+                </figure>
+                <div class="thumbs" role="group" aria-label="DCDC 图片">
+                  <button class="thumb is-active" type="button" aria-pressed="true"
+                    data-src="assets/img/dcdc-pcb.webp" data-label="PCB" data-caption="四层板 · V1.0" data-alt="DCDC 升降压电源板 PCB">
+                    <img src="assets/img/dcdc-pcb-thumb.webp" alt="" loading="lazy">
+                    <span>PCB</span>
+                  </button>
+                  <button class="thumb" type="button" aria-pressed="false"
+                    data-src="assets/img/dcdc-sch-1.webp" data-label="原理图 1" data-caption="升降压模块" data-alt="DCDC 升降压模块原理图">
+                    <img src="assets/img/dcdc-sch-1-thumb.webp" alt="" loading="lazy">
+                    <span>原理图 1</span>
+                  </button>
+                  <button class="thumb" type="button" aria-pressed="false"
+                    data-src="assets/img/dcdc-sch-2.webp" data-label="原理图 2" data-caption="电源与主控模块" data-alt="DCDC 电源与主控模块原理图">
+                    <img src="assets/img/dcdc-sch-2-thumb.webp" alt="" loading="lazy">
+                    <span>原理图 2</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project--reverse" id="balance" data-reveal>
+          <header class="project-head">
+            <span class="project-index" aria-hidden="true">04</span>
+            <div class="project-head-text">
+              <p class="project-kicker">Balance / Control</p>
+              <h3>两轮自平衡小车 <span class="status status--wip"><i aria-hidden="true"></i>迭代中</span></h3>
+              <p class="project-summary">MPU6050 + TB6612 + 双编码器，完成直立环调试与两套固件（FreeRTOS / 裸机），经历两版 PCB 迭代，第三版规划中。</p>
+              <div class="tags" aria-label="技术标签">
+                <span>STM32</span><span>MPU6050</span><span>FreeRTOS</span><span>PID</span><span>PCB</span>
+              </div>
+            </div>
+            <a class="repo-link" href="https://github.com/Yi-lne/Embedded-project--Balance_Car" target="_blank" rel="noopener">仓库 <span aria-hidden="true">↗</span></a>
+          </header>
+
+          <div class="project-grid">
+            <div class="project-info">
+              <ul class="points">
+                <li>互补滤波（裸机）/ 卡尔曼（FreeRTOS）；角度内环 200/250Hz，速度 / 转向外环 20/100Hz。</li>
+                <li>裸机 TIM2 1ms 标志调度；FreeRTOS 5 任务 + 队列邮箱，优先级保证角度环实时性。</li>
+                <li>两版 PCB 迭代：V1 电源未解耦；V2 电源解耦 + 防反接 + TVS；改版过程与问题定位记录在项目 README。</li>
+                <li>示波器确认编码器 A/B 信号正常，定位焊点 / 焊盘破损；V3 将重做编码器接口、电源解耦、防呆与 MPU6050 焊板。</li>
+              </ul>
+              <div class="stats">
+                <div><b>200/250 Hz</b><span>角度环</span></div>
+                <div><b>5 任务</b><span>FreeRTOS</span></div>
+                <div><b>2 版</b><span>PCB</span></div>
+                <div><b>1000 次</b><span>零偏校准</span></div>
+              </div>
+            </div>
+
+            <div class="project-viewer">
+              <div class="viewer" data-viewer>
+                <figure class="stage">
+                  <img class="stage-img" src="assets/img/balance-sch.webp" alt="STM32 平衡车原理图" loading="lazy">
+                  <figcaption>
+                    <span class="stage-label">原理图</span>
+                    <span class="stage-caption">STM32F103C8T6 · V1.0</span>
+                  </figcaption>
+                </figure>
+                <div class="thumbs" role="group" aria-label="Balance Car 图片">
+                  <button class="thumb is-active" type="button" aria-pressed="true"
+                    data-src="assets/img/balance-sch.webp" data-label="原理图" data-caption="STM32F103C8T6 · V1.0" data-alt="STM32 平衡车原理图">
+                    <img src="assets/img/balance-sch-thumb.webp" alt="" loading="lazy">
+                    <span>原理图</span>
+                  </button>
+                  <button class="thumb" type="button" aria-pressed="false"
+                    data-src="assets/img/balance-pcb.webp" data-label="PCB" data-caption="V2 · 底层视图" data-alt="STM32 平衡车 PCB">
+                    <img src="assets/img/balance-pcb-thumb.webp" alt="" loading="lazy">
+                    <span>PCB</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="other" id="other" aria-labelledby="other-title">
+      <div class="other-inner">
+        <header class="section-head section-head--dark" data-reveal>
+          <div>
+            <p class="section-label">Other builds / 03</p>
+            <h2 class="section-title" id="other-title">其他项目</h2>
+          </div>
+        </header>
+
+        <div class="other-list" data-reveal>
+          <a class="other-row" href="https://github.com/Yi-lne/Hospital-Selection-System" target="_blank" rel="noopener">
+            <span class="other-num">01</span>
+            <div class="other-text">
+              <h3>Hospital-Selection-System</h3>
+              <p>基于 Spring Boot 的智能医院选择网站</p>
+            </div>
+            <span class="lang">Java</span>
+            <span class="other-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="other-row" href="https://github.com/Yi-lne/KouTu_c--" target="_blank" rel="noopener">
+            <span class="other-num">02</span>
+            <div class="other-text">
+              <h3>KouTu_c--</h3>
+              <p>Windows 抠图工具</p>
+            </div>
+            <span class="lang">HTML</span>
+            <span class="other-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="other-row" href="https://github.com/Yi-lne/wx-note-miniPro" target="_blank" rel="noopener">
+            <span class="other-num">03</span>
+            <div class="other-text">
+              <h3>wx-note-miniPro</h3>
+              <p>云众便签 · 微信小程序</p>
+            </div>
+            <span class="lang">JavaScript</span>
+            <span class="other-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Yi-lne · 原生 HTML / CSS / JS，托管于 GitHub Pages</p>
+    <p class="footer-links">
+      <a href="https://github.com/Yi-lne" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="#top">回到顶部 ↑</a>
+    </p>
+  </footer>
+
+  <dialog id="lightbox" class="lightbox" aria-label="图片预览">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" type="button" aria-label="关闭">×</button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="上一张">‹</button>
+      <img id="lightbox-img" alt="">
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="下一张">›</button>
+      <div class="lightbox-bar">
+        <span id="lightbox-caption"></span>
+        <span class="lightbox-meta">
+          <a id="lightbox-open" class="lightbox-open" href="#" target="_blank" rel="noopener">原图 ↗</a>
+          <span id="lightbox-count"></span>
+        </span>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="assets/script.js" defer></script>
 </body>
 </html>

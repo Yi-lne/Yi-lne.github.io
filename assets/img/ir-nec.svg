@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" role="img" aria-label="NEC 帧结构示意">
+  <style>
+    .box{fill:#fffdf8;stroke:#d8d0bf;stroke-width:1.2}
+    .t{font-family:Inter,"Microsoft YaHei",sans-serif;fill:#17140f;font-weight:650;font-size:20px}
+    .s{font-family:Inter,"Microsoft YaHei",sans-serif;fill:#70695c;font-size:14px}
+    .p{font-family:"Cascadia Mono",Consolas,monospace;fill:#4a443a;font-size:14px}
+    .m{font-family:"Cascadia Mono",Consolas,monospace;fill:#8a8172;font-size:13px;letter-spacing:.4px}
+    .pulse{fill:#b23a2b}
+    .low{stroke:#17140f;stroke-width:1.4;fill:none}
+    .divider{stroke:#d8d0bf;stroke-width:1}
+  </style>
+
+  <text x="30" y="34" class="m">NEC / FRAME STRUCTURE</text>
+  <text x="30" y="56" class="s">示意，非等比例</text>
+
+  <rect class="box" x="30" y="80" width="240" height="62" rx="8"/>
+  <text class="t" x="150" y="108" text-anchor="middle">引导码</text>
+  <text class="s" x="150" y="130" text-anchor="middle">9ms 低 + 4.5ms 高</text>
+
+  <rect class="box" x="290" y="80" width="390" height="62" rx="8"/>
+  <text class="t" x="485" y="108" text-anchor="middle">32 位数据</text>
+  <text class="s" x="485" y="130" text-anchor="middle">地址 + 地址反码 + 数据 + 数据反码</text>
+
+  <rect class="box" x="700" y="80" width="270" height="62" rx="8"/>
+  <text class="t" x="835" y="108" text-anchor="middle">重复码</text>
+  <text class="s" x="835" y="130" text-anchor="middle">9ms + 2.25ms + 560µs</text>
+
+  <text class="p" x="30" y="192">逻辑 0</text>
+  <rect class="pulse" x="120" y="176" width="56" height="14" rx="1"/>
+  <path class="low" d="M176 188 H252"/>
+  <text class="m" x="148" y="214" text-anchor="middle">560µs</text>
+  <text class="m" x="214" y="214" text-anchor="middle">560µs</text>
+
+  <text class="p" x="30" y="258">逻辑 1</text>
+  <rect class="pulse" x="120" y="242" width="56" height="14" rx="1"/>
+  <path class="low" d="M176 254 H365"/>
+  <text class="m" x="148" y="280" text-anchor="middle">560µs</text>
+  <text class="m" x="270" y="280" text-anchor="middle">1690µs</text>
+
+  <path class="divider" d="M500 166 V286"/>
+
+  <text class="p" x="530" y="184">EXTI 双边沿中断</text>
+  <text class="p" x="530" y="212">TIM3 1µs 计时</text>
+  <text class="p" x="530" y="240">状态机：IDLE → 起始 → 数据 → 重复码</text>
+  <text class="p" x="530" y="268">反码校验失败 → 自动复位</text>
+</svg>
