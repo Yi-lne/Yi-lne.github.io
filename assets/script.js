@@ -8,6 +8,25 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  /* back to top: the sticky header should not be used as the anchor target */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+      });
+      if (history.replaceState) {
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        } catch (error) {
+          /* file:// previews may reject replaceState; scrolling already started */
+        }
+      }
+    });
+  });
+
   /* reveal on scroll */
   const revealEls = [...document.querySelectorAll("[data-reveal]")];
   if ("IntersectionObserver" in window) {
