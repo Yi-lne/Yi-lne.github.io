@@ -500,6 +500,8 @@ a { color: inherit; }
 .project-demo video {
   display: block;
   width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
   aspect-ratio: 16 / 9;
   height: auto;
   border: 1px solid var(--line);
