@@ -141,12 +141,12 @@
               <ul class="points">
                 <li>10µH + SS54B + 22µF 升压主电路，200K / 100K 电位器 + 10K 反馈网络，实现 12.6–18V 可调。</li>
                 <li>P-MOS + 稳压管栅极钳位防反接，SMBJ16A TVS 抑制输入尖峰。</li>
-                <li>嘉立创 EDA 完成原理图 / PCB / Gerber；实测 12.64–17.94V，与理论值一致。</li>
+                <li>嘉立创 EDA 完成原理图 / PCB / Gerber；实测 12.64–17.83V 左右，与理论值基本一致。</li>
               </ul>
               <div class="stats">
                 <div><b>2–16 V</b><span>输入</span></div>
                 <div><b>12.6–18 V</b><span>输出范围</span></div>
-                <div><b>17.94 V</b><span>实测上限</span></div>
+                <div><b>17.83 V 左右</b><span>实测上限</span></div>
                 <div><b>89.9 K</b><span>电位器实测</span></div>
               </div>
             </div>
@@ -197,13 +197,13 @@
                 <li>13.2–25.2V 升压 / 1.23–7.38V 降压 / 5V / 3.3V 多路输出；9A 保险丝、13V 与 33V 过压保护。</li>
                 <li>ADC1 三通道扫描 + DMA 循环采样，分压换算、一阶滤波、0.01V 显示；100ms 刷新 OLED。</li>
                 <li>EXTI + 20ms 定时器消抖控制 BUCK/BOOST 启停，上电同步开关状态。</li>
-                <li>调试：定位稳压管漏电、R27 下拉导致 BUCK 失效；实测 OVP 动作点 14.02V。</li>
+                <li>调试：定位稳压管漏电、R27 下拉导致 BUCK 失效；实测 OVP 动作点 14.02V 左右。</li>
               </ul>
               <div class="stats">
-                <div><b>25.2 V</b><span>升压上限</span></div>
-                <div><b>7.38 V</b><span>降压上限</span></div>
+                <div><b>25.8 V 左右</b><span>实测升压上限</span></div>
+                <div><b>7.36 V 左右</b><span>实测降压上限</span></div>
                 <div><b>3 路</b><span>ADC 监测</span></div>
-                <div><b>14.02 V</b><span>OVP 动作点</span></div>
+                <div><b>14.02 V 左右</b><span>OVP 动作点</span></div>
               </div>
             </div>
 
@@ -244,7 +244,7 @@
             <div class="project-head-text">
               <p class="project-kicker">Balance / Control</p>
               <h3>两轮自平衡小车 <span class="status status--wip"><i aria-hidden="true"></i>迭代中</span></h3>
-              <p class="project-summary">MPU6050 + TB6612 + 双编码器，完成直立环调试与两套固件（FreeRTOS / 裸机），经历两版 PCB 迭代，第三版规划中。</p>
+              <p class="project-summary">MPU6050 + TB6612 + 双编码器，完成角度内环 PD 整定与两套固件（裸机 / FreeRTOS），经历两版 PCB 迭代，第三版规划中。</p>
               <div class="tags" aria-label="技术标签">
                 <span>STM32</span><span>MPU6050</span><span>FreeRTOS</span><span>PID</span><span>PCB</span>
               </div>
@@ -255,13 +255,14 @@
           <div class="project-grid">
             <div class="project-info">
               <ul class="points">
-                <li>互补滤波（裸机）/ 卡尔曼（FreeRTOS）；角度内环 200/250Hz，速度 / 转向外环 20/100Hz。</li>
-                <li>裸机 TIM2 1ms 标志调度；FreeRTOS 5 任务 + 队列邮箱，优先级保证角度环实时性。</li>
-                <li>两版 PCB 迭代：V1 电源未解耦；V2 电源解耦 + 防反接 + TVS；改版过程与问题定位记录在项目 README。</li>
-                <li>示波器确认编码器 A/B 信号正常，定位焊点 / 焊盘破损；V3 将重做编码器接口、电源解耦、防呆与 MPU6050 焊板。</li>
+                <li>姿态融合：裸机互补滤波（α = 0.99），FreeRTOS 卡尔曼滤波（角度 + 零偏，250Hz）；角度内环 200Hz，速度 / 转向外环 20/100Hz。</li>
+                <li>固件迭代：裸机 v1.2 完成角度内环 PD 整定；FreeRTOS v1.1 微调 PD、卡尔曼参数，并重做 PWM 合成 / 限幅逻辑。</li>
+                <li>调度架构：裸机 TIM2 1ms 标志位调度；FreeRTOS 5 任务 + 队列邮箱；FreeRTOS 中编码器测速与速度 / 转向环均为 10ms。</li>
+                <li>速度 / 转向环代码已实现，默认增益为 0；因编码器焊点 / 焊盘破损暂未调参。V3 将重做编码器接口、电源解耦与防呆。</li>
+                <li>两版 PCB：V1 电源未解耦；V2 电源解耦 + 防反接 + TVS；MPU6050 排母安装导致零点漂移，V3 计划焊板。</li>
               </ul>
               <div class="stats">
-                <div><b>200/250 Hz</b><span>角度环</span></div>
+                <div><b>200 Hz</b><span>角度环</span></div>
                 <div><b>5 任务</b><span>FreeRTOS</span></div>
                 <div><b>2 版</b><span>PCB</span></div>
                 <div><b>1000 次</b><span>零偏校准</span></div>
